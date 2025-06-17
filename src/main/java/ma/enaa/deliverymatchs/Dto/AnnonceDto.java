@@ -1,33 +1,24 @@
-package ma.enaa.deliverymatchs.Model;
+package ma.enaa.deliverymatchs.Dto;
 
-import jakarta.persistence.*;
+import lombok.Value;
+import ma.enaa.deliverymatchs.Model.Annonce;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-@Entity
-public class Annonce {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class AnnonceDto implements Serializable {
+    Long id;
+    String lieuDepart;
+    String etapes;
+    String destination;
+    String dimensionMax;
+    String typeDeMarchandise;
+    String capaciteDisponible;
+    Date date;
 
-    private String lieuDepart;
-    private String etapes;
-    private String destination;
-    private String dimensionMax;
-    private String typeDeMarchandise;
-    private String capaciteDisponible;
-
-    @Temporal(TemporalType.DATE)
-    private Date date;
-
-    @ManyToOne
-    @JoinColumn(name = "conducteur_id")
-    private Conducteur conducteur;
-
-    @OneToMany(mappedBy = "annonce")
-    private List<Demande> demandes;
+    public AnnonceDto() {
+    }
 
     public Long getId() {
         return id;
@@ -91,21 +82,5 @@ public class Annonce {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Conducteur getConducteur() {
-        return conducteur;
-    }
-
-    public void setConducteur(Conducteur conducteur) {
-        this.conducteur = conducteur;
-    }
-
-    public List<Demande> getDemandes() {
-        return demandes;
-    }
-
-    public void setDemandes(List<Demande> demandes) {
-        this.demandes = demandes;
     }
 }
