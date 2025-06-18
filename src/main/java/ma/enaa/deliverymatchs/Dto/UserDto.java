@@ -1,12 +1,9 @@
 package ma.enaa.deliverymatchs.Dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Value;
 import ma.enaa.deliverymatchs.Model.Role;
-import ma.enaa.deliverymatchs.Model.User;
 
 import java.io.Serializable;
+
 
 public class UserDto  {
     Long id;
@@ -15,10 +12,6 @@ public class UserDto  {
     String email;
     String motDepass;
     Role role;
-    boolean estVerifie;
-
-    public UserDto() {
-    }
 
     public Long getId() {
         return id;
@@ -66,13 +59,5 @@ public class UserDto  {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public boolean isEstVerifie() {
-        return estVerifie;
-    }
-
-    public void setEstVerifie(boolean estVerifie) {
-        this.estVerifie = estVerifie;
     }
 }

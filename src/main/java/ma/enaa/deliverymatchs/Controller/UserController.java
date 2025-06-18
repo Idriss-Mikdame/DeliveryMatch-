@@ -2,6 +2,7 @@ package ma.enaa.deliverymatchs.Controller;
 
 import ma.enaa.deliverymatchs.Dto.UserDto;
 import ma.enaa.deliverymatchs.Services.UserServices;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,31 +10,27 @@ import java.util.List;
 @RestController
 @RequestMapping("/User")
 public class UserController {
-    private UserServices userServices;
+    private final UserServices service;
 
-    public UserController(UserServices userServices) {
-        this.userServices = userServices;
-    }
-
-    @GetMapping
-    public List<UserDto> AfficherUsers(){
-        return   userServices.AfficherUser();
-    }
-    @PostMapping
-    public UserDto AddUser(@RequestBody UserDto userDto){
-        return userServices.AjouterUser(userDto);
-    }
-    @GetMapping("{id}")
-    public UserDto ObtinirParid(@PathVariable("id") Long id){
-        return userServices.obtenirUserbyid(id);
+    public UserController(UserServices service) {
+        this.service = service;
     }
 
-    @PutMapping("{id}")
-    public UserDto ModifierUsere(@PathVariable Long id, @RequestBody UserDto userDto){
-        return userServices.ModifierUser(id,userDto);
+
+    @PutMapping("/update/{id}")
+    public UserDto updateUser(@RequestBody UserDto dto, @PathVariable Long id){
+        return service.updateUser(dto, id);
     }
-    @DeleteMapping("{id}")
-    public void Supprimer(@PathVariable Long id){
-        userServices.SupprimerUser(id);
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/userList")
+    public List<UserDto> getUsers(){
+        return service.getUsersList();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/deleteUser/{id}")
+    public void deleteUser(@PathVariable Long id){
+        service.deleteUser(id);
     }
 }

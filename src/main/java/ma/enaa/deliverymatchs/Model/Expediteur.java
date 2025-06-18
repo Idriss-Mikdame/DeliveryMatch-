@@ -12,7 +12,7 @@ public class Expediteur extends  User{
     private List<Demande> demandes;
 
     public Expediteur() {
-
+            this.setRole(Role.EXPEDITEUR);
     }
 
     public List<Demande> getDemandes() {
