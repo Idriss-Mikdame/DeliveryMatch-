@@ -1,16 +1,11 @@
 package ma.enaa.deliverymatchs.Auth;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-
-@AllArgsConstructor
-@Setter
-@Getter
-@Builder
 public class AuthenticationResponse {
+
+    public AuthenticationResponse(String token) {
+        this.token = token;
+    }
+
     private String token;
 
     public String getToken() {

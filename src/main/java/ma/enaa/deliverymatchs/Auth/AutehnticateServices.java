@@ -28,7 +28,6 @@ public class AutehnticateServices {
     public AuthenticationResponse register(RegisterRequest request) {
         User user;
 
-      // Decide which subclass to create based on role
         switch (request.getRole()) {
             case ADMIN -> user = new Admin();
             case CONDUCTEUR -> user = new Conducteur();
@@ -43,7 +42,7 @@ public class AutehnticateServices {
         user.setMotDepass(passwordEncoder.encode(request.getMotDePasse()));
         user.setRole(request.getRole());
 
-        repository.save(user); // use appropriate repository for the subclass
+        repository.save(user);
 
         String jwtToken = jwtService.generateToken(user);
 

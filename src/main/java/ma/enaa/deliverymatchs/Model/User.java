@@ -17,7 +17,10 @@ public class User implements UserDetails {
     private Long id;
     private String nom;
     private String prenom;
+
+    @Column(unique = true)
     private String email;
+
     private String motDepass;
 
     public Long getId() {
@@ -81,10 +84,8 @@ public class User implements UserDetails {
 
     private boolean estVerifie;
 
-    // 🔧 Constructeur vide requis par JPA
     public User() {}
 
-    // ✅ Constructeur complet
     public User(Long id, String nom, String prenom, String email, String motDepass, Role role, boolean estVerifie) {
         this.id = id;
         this.nom = nom;
@@ -94,8 +95,6 @@ public class User implements UserDetails {
         this.role = role;
         this.estVerifie = estVerifie;
     }
-
-    // ✅ Builder manuel
     public static class Builder {
         private Long id;
         private String nom;
@@ -149,7 +148,6 @@ public class User implements UserDetails {
         return new Builder();
     }
 
-    // Spring Security
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
@@ -183,5 +181,18 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", motDepass='" + motDepass + '\'' +
+                ", role=" + role +
+                ", estVerifie=" + estVerifie +
+                '}';
     }
 }

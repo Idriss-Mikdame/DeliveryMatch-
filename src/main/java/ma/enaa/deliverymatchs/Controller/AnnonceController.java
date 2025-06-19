@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Annonces")
-@CrossOrigin(origins = "*") // Autorise les requêtes CORS (à adapter si besoin)
+@CrossOrigin(origins = "*")
 public class AnnonceController {
 
   private final ma.enaa.deliverymatchs.Services.AnnonceService annonceService;
@@ -22,8 +22,7 @@ public class AnnonceController {
     @PostMapping("/{conducteurId}")
     public ResponseEntity<AnnonceDto> createAnnonce(
             @PathVariable Long conducteurId,
-            @RequestBody AnnonceDto annonceDto
-    ) {
+            @RequestBody AnnonceDto annonceDto) {
         AnnonceDto created = annonceService.createAnnonce(conducteurId, annonceDto);
         return ResponseEntity.ok(created);
     }

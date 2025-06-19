@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserController {
     private final UserServices service;
 
@@ -22,7 +22,7 @@ public class UserController {
         return service.updateUser(dto, id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+  //  @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/userList")
     public List<UserDto> getUsers(){
         return service.getUsersList();

@@ -35,9 +35,12 @@ public class UserServices {
     }
 
     public List<UserDto> getUsersList(){
-       return  repository.findAll() .stream()
+
+        repository.findAll().forEach(user -> System.out.println(user));
+       return  repository.findAll().stream()
                .map(mapper::toDto)
                .collect(Collectors.toList());
+
 
     }
 

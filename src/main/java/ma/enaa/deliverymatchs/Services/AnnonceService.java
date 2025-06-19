@@ -1,7 +1,7 @@
 package ma.enaa.deliverymatchs.Services;
 
 import ma.enaa.deliverymatchs.Dto.AnnonceDto;
-import ma.enaa.deliverymatchs.Mapper.AnnonnceMapper;
+import ma.enaa.deliverymatchs.Mapper.AnnonceMapper;
 import ma.enaa.deliverymatchs.Model.Annonce;
 import ma.enaa.deliverymatchs.Model.Conducteur;
 import ma.enaa.deliverymatchs.Repo.AnnonceRepository;
@@ -21,13 +21,14 @@ public class AnnonceService {
 
     private  final  UserRepository userRepository;
 
-      private  final AnnonnceMapper annonnceMapper;
+      private  final AnnonceMapper annonnceMapper;
 
-    public AnnonceService(AnnonceRepository annonceRepository, UserRepository userRepository, AnnonnceMapper annonnceMapper) {
+    public AnnonceService(AnnonceRepository annonceRepository, UserRepository userRepository, AnnonceMapper annonnceMapper) {
         this.annonceRepository = annonceRepository;
         this.userRepository = userRepository;
         this.annonnceMapper = annonnceMapper;
     }
+
 
     public AnnonceDto createAnnonce(Long conducteurId, AnnonceDto annonceDto) {
         Conducteur conducteur = (Conducteur) userRepository.findById(conducteurId)

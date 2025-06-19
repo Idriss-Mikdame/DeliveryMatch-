@@ -1,13 +1,10 @@
 package ma.enaa.deliverymatchs.Dto;
 
-import lombok.Value;
-import ma.enaa.deliverymatchs.Model.Annonce;
 
-import java.io.Serializable;
 import java.util.Date;
 
 
-public class AnnonceDto implements Serializable {
+public class AnnonceDto {
     Long id;
     String lieuDepart;
     String etapes;
@@ -16,6 +13,7 @@ public class AnnonceDto implements Serializable {
     String typeDeMarchandise;
     String capaciteDisponible;
     Date date;
+//    Long conducteurId;
 
     public AnnonceDto() {
     }
@@ -83,4 +81,12 @@ public class AnnonceDto implements Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
+
+//    public Long getConducteurId() {
+//        return conducteurId;
+//    }
+//
+//    public void setConducteurId(Long conducteurId) {
+//        this.conducteurId = conducteurId;
+//    }
 }
