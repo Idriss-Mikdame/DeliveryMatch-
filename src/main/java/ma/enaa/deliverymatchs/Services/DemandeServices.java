@@ -1,14 +1,13 @@
 package ma.enaa.deliverymatchs.Services;
 
+import ma.enaa.deliverymatchs.Dto.AnnonceDto;
 import ma.enaa.deliverymatchs.Dto.DemandeDto;
 import ma.enaa.deliverymatchs.Mapper.DeamndeMapper;
-import ma.enaa.deliverymatchs.Model.Annonce;
-import ma.enaa.deliverymatchs.Model.Demande;
-import ma.enaa.deliverymatchs.Model.Expediteur;
-import ma.enaa.deliverymatchs.Model.User;
+import ma.enaa.deliverymatchs.Model.*;
 import ma.enaa.deliverymatchs.Repo.AnnonceRepository;
 import ma.enaa.deliverymatchs.Repo.DemandeRepository;
 import ma.enaa.deliverymatchs.Repo.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -29,21 +28,31 @@ public class DemandeServices {
         this.userRepository = userRepository;
         this.annonceRepository = annonceRepository;
     }
+    public DemandeDto AjouterDemande(DemandeDto dto) {
+        Demande demande = demandeMapper.toEntity(dto);
 
-    public DemandeDto AjouterDemande(Long expideteurid, DemandeDto demandeDto) {
-        User user = userRepository.findById(expideteurid)
-                .orElseThrow(() -> new RuntimeException("Utilisateur introuvable avec l’ID : " + expideteurid));
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Expediteur expediteur = (Expediteur) userRepository.findByEmail(email);
 
-        if (!(user instanceof Expediteur)) {
-            throw new RuntimeException("L'utilisateur avec l’ID " + expideteurid + " n'est pas un expéditeur");
-        }
+        demande.setExpediteur(expediteur);
 
-        Demande demande = demandeMapper.toEntity(demandeDto);
-        demande.setDateDemande(new Date());
-        demande.setExpediteur((Expediteur) user);
-
-        return demandeMapper.toDto(demandeRepository.save(demande));
+        Demande addDemande = demandeRepository.save(demande);
+        return demandeMapper.toDto(addDemande);
     }
+//    public DemandeDto AjouterDemande(Long expideteurid, DemandeDto demandeDto) {
+//        User user = userRepository.findById(expideteurid)
+//                .orElseThrow(() -> new RuntimeException("Utilisateur introuvable avec l’ID : " + expideteurid));
+//
+//        if (!(user instanceof Expediteur)) {
+//            throw new RuntimeException("L'utilisateur avec l’ID " + expideteurid + " n'est pas un expéditeur");
+//        }
+//
+//        Demande demande = demandeMapper.toEntity(demandeDto);
+//        demande.setDateDemande(new Date());
+//        demande.setExpediteur((Expediteur) user);
+//
+//        return demandeMapper.toDto(demandeRepository.save(demande));
+//    }
     public List<DemandeDto> ListDemande(){
         return demandeRepository.findAll().stream()
                 .map(demandeMapper::toDto)

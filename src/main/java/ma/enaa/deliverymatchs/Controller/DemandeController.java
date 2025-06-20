@@ -20,9 +20,9 @@ public class DemandeController {
         this.demandeServices = demandeServices;
     }
 
-    @PostMapping("/{expediteurId}")
-    public ResponseEntity<DemandeDto> AjouterDemande(@PathVariable Long expediteurId,@RequestBody DemandeDto demandeDto){
-        DemandeDto ajouter = demandeServices.AjouterDemande(expediteurId,demandeDto);
+    @PostMapping
+    public ResponseEntity<DemandeDto> AjouterDemande(@RequestBody DemandeDto demandeDto){
+        DemandeDto ajouter = demandeServices.AjouterDemande(demandeDto);
         return new ResponseEntity<>(ajouter, HttpStatus.CREATED);
     }
     @GetMapping

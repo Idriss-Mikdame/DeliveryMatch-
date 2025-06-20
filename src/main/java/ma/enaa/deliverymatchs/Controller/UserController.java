@@ -16,19 +16,19 @@ public class UserController {
         this.service = service;
     }
 
-
+    //@PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public UserDto updateUser(@RequestBody UserDto dto, @PathVariable Long id){
         return service.updateUser(dto, id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/userList")
     public List<UserDto> getUsers(){
         return service.getUsersList();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+  //  @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteUser/{id}")
     public void deleteUser(@PathVariable Long id){
         service.deleteUser(id);
