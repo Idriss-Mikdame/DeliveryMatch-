@@ -19,11 +19,9 @@ public class AnnonceController {
     }
 
 
-    @PostMapping("/{conducteurId}")
-    public ResponseEntity<AnnonceDto> createAnnonce(
-            @PathVariable Long conducteurId,
-            @RequestBody AnnonceDto annonceDto) {
-        AnnonceDto created = annonceService.createAnnonce(conducteurId, annonceDto);
+    @PostMapping
+    public ResponseEntity<AnnonceDto> createAnnonce(@RequestBody AnnonceDto annonceDto) {
+        AnnonceDto created = annonceService.createAnnonce( annonceDto);
         return ResponseEntity.ok(created);
     }
 

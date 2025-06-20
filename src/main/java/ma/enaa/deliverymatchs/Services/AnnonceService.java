@@ -7,6 +7,7 @@ import ma.enaa.deliverymatchs.Model.Conducteur;
 import ma.enaa.deliverymatchs.Repo.AnnonceRepository;
 import ma.enaa.deliverymatchs.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,18 +29,29 @@ public class AnnonceService {
         this.userRepository = userRepository;
         this.annonnceMapper = annonnceMapper;
     }
+    public AnnonceDto createAnnonce(AnnonceDto dto) {
+        Annonce annonce = annonnceMapper.toEntity(dto);
 
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Conducteur conducteur = (Conducteur) userRepository.findByEmail(email);
 
-    public AnnonceDto createAnnonce(Long conducteurId, AnnonceDto annonceDto) {
-        Conducteur conducteur = (Conducteur) userRepository.findById(conducteurId)
-                .orElseThrow(() -> new RuntimeException("Conducteur non trouvé"));
-
-        Annonce annonce = annonnceMapper.toEntity(annonceDto);
         annonce.setConducteur(conducteur);
 
-        Annonce saved = annonceRepository.save(annonce);
-        return annonnceMapper.toDto(saved);
+        Annonce saveAnnoce = annonceRepository.save(annonce);
+        return annonnceMapper.toDto(saveAnnoce);
     }
+
+//
+//    public AnnonceDto createAnnonce(Long conducteurId, AnnonceDto annonceDto) {
+//        Conducteur conducteur = (Conducteur) userRepository.findById(conducteurId)
+//                .orElseThrow(() -> new RuntimeException("Conducteur non trouvé"));
+//
+//        Annonce annonce = annonnceMapper.toEntity(annonceDto);
+//        annonce.setConducteur(conducteur);
+//
+//        Annonce saved = annonceRepository.save(annonce);
+//        return annonnceMapper.toDto(saved);
+//    }
 
     public List<AnnonceDto> getAllAnnonces() {
         return annonceRepository.findAll()

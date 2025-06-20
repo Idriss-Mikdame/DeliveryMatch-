@@ -22,7 +22,7 @@ public class UserController {
         return service.updateUser(dto, id);
     }
 
-  //  @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/userList")
     public List<UserDto> getUsers(){
         return service.getUsersList();

@@ -13,7 +13,7 @@ public class AnnonceDto {
     String typeDeMarchandise;
     String capaciteDisponible;
     Date date;
-//    Long conducteurId;
+//  Long conducteurId;
 
     public AnnonceDto() {
     }
