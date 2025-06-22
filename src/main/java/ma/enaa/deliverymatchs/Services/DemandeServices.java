@@ -80,7 +80,17 @@ public class DemandeServices {
         demande.setAnnonce(annonce);
         return demandeMapper.toDto(demandeRepository.save(demande));
     }
+    public DemandeDto update(Long id, DemandeDto dto) {
+        Demande demande = demandeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Demande non trouvée"));
 
+        demande.setStatus(dto.getStatus());
+        demande.setDimension(dto.getDimension());
+        demande.setPoids(dto.getPoids());
+        demande.setType(dto.getType());
+
+        return demandeMapper.toDto(demandeRepository.save(demande));
+    }
     public List<DemandeDto> OptenirParAnnonce(Long annonceId){
         return demandeRepository.findByAnnonceId(annonceId).stream()
                 .map(demandeMapper::toDto)

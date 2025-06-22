@@ -72,6 +72,17 @@ public class AnnonceService {
                 .orElseThrow(() -> new RuntimeException("Annonce non trouvée"));
         return annonnceMapper.toDto(annonce);
     }
+    public AnnonceDto updatAnnonce(Long id,AnnonceDto annonceDto){
+        Annonce annonce = annonceRepository.findById(id).orElseThrow(()-> new  RuntimeException("Aucun annonce"));
+        annonce.setLieuDepart(annonceDto.getLieuDepart());
+        annonce.setEtapes(annonceDto.getEtapes());
+        annonce.setDestination(annonceDto.getDestination());
+        annonce.setDimensionMax(annonceDto.getDimensionMax());
+        annonce.setTypeDeMarchandise(annonceDto.getTypeDeMarchandise());
+        annonce.setCapaciteDisponible(annonceDto.getCapaciteDisponible());
+        annonce.setDate(annonceDto.getDate());
+        return annonnceMapper.toDto(annonceRepository.save(annonce));
+    }
 
     public void deleteAnnonce(Long id) {
         annonceRepository.deleteById(id);

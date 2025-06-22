@@ -30,6 +30,12 @@ public class DemandeController {
         return ResponseEntity.ok(demandeServices.ListDemande());
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<DemandeDto> updateDemande(
+            @PathVariable Long id,
+            @RequestBody DemandeDto dto) {
+        return ResponseEntity.ok(demandeServices.update(id, dto));
+    }
         @GetMapping("/{id}")
         public  ResponseEntity<DemandeDto> getDemandeById(@PathVariable Long id){
             return  ResponseEntity.ok(demandeServices.ObtenirParid(id));

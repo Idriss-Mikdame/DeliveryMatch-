@@ -36,6 +36,11 @@ public class AnnonceController {
         List<AnnonceDto> list = annonceService.getAnnoncesByConducteurId(conducteurId);
         return ResponseEntity.ok(list);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<AnnonceDto> UpdateAnnonce(@PathVariable Long id, @RequestBody AnnonceDto annonceDto)
+    {
+        return ResponseEntity.ok(annonceService.updatAnnonce(id,annonceDto));
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<AnnonceDto> getAnnonceById(@PathVariable Long id) {
