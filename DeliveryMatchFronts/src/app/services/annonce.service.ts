@@ -7,11 +7,13 @@ import {pseudoRandomBytes} from 'node:crypto';
   providedIn: 'root'
 })
 export class AnnonceService {
-  private url = "http://localhost:8087/Annonces"
+  private url = "http://localhost:8086/Annonces"
 
 
   constructor(private http:HttpClient) { }
-
+  AfficherAnnonceByid(id:any) : Observable<any> {
+    return this.http.get(`${this.url}/${id}`);
+  }
 
 
   ListAnnonce():Observable<any> {
@@ -25,5 +27,8 @@ export class AnnonceService {
   }
   SupprimerAnnonce(id:number):Observable<any>{
     return this.http.delete(`${this.url}/${id}`)
+  }
+  getAnnoncesByConducteurId(conducteurId: number): Observable<any> {
+    return this.http.get(`${this.url}/conducteur/${conducteurId}`);
   }
 }

@@ -1,0 +1,18 @@
+#banner {
+  background-image: linear-gradient(to top, #051937, #195066, #538a8c, #9fc4b2, #f6ffe2);
+  color: #fff;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.promo-titre {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.custom-img {
+  border-radius: 5%;
+  max-width: 100%;
+  height: auto;
+}
+

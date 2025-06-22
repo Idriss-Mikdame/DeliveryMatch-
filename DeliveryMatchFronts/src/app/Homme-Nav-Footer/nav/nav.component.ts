@@ -4,14 +4,16 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIcon} from '@angular/material/icon';
 import {MatAnchor, MatIconButton} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {RegisterLoginService} from '../services/register-login.service';
+import {RegisterLoginService} from '../../services/register-login.service';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 import {NgIf} from '@angular/common';
+import { FooterComponent } from '../footer/footer.component'; // Chemin à adapter
 
 @Component({
   selector: 'app-nav',
   standalone: true,
   imports: [
+    FooterComponent,
     MatSidenavModule,
     RouterLink,
     MatToolbarModule,

@@ -6,8 +6,8 @@ import {Observable, tap} from 'rxjs';
   providedIn: 'root'
 })
 export class RegisterLoginService {
-    private url="http://localhost:8087/api/v1/auth"
-    private url1 = "http://localhost:8087/api/v1/auth"
+    private url="http://localhost:8086/api/v1/auth"
+    private url1 = "http://localhost:8086/api/v1/auth"
      private tokenKey = 'auth_token';
 
   constructor(private http:HttpClient) { }

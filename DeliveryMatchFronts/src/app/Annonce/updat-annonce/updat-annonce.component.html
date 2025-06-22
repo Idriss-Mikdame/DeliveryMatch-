@@ -1,1 +1,58 @@
-<p>updat-annonce works!</p>
+<div class="container">
+  <mat-card>
+    <mat-card-header class="d-flex justify-content-center">
+      <mat-card-title class="fw-bold fs-1 mb-5 mt-2 text-center">Modifier Un Annonce</mat-card-title>
+    </mat-card-header>
+    <mat-divider>
+    </mat-divider>
+    <mat-card-content class="mt-3" >
+      <form (ngSubmit)="editForm()">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="w-100 mb-3" appearance="fill">
+              <mat-label>lieuDepart :</mat-label>
+              <input type="text" matInput placeholder="lieuDepart" name="lieuDepart" [(ngModel)]="annonce.lieuDepart">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 mb-3" appearance="fill">
+              <mat-label>Etapes :</mat-label>
+              <input type="text" matInput placeholder="etapes" name="etapes" [(ngModel)]="annonce.etapes">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 mb-3" appearance="fill">
+              <mat-label>Destination :</mat-label>
+              <input type="text" matInput placeholder="destination" name="destination" [(ngModel)]="annonce.destination">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 mb-3" appearance="fill">
+              <mat-label>DimensionMax :</mat-label>
+              <input type="text" matInput placeholder="dimensionMax" name="dimensionMax" [(ngModel)]="annonce.dimensionMax">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 mb-3" appearance="fill">
+              <mat-label>TypeDeMarchandise :</mat-label>
+              <input type="text" matInput placeholder="typeDeMarchandise" name="typeDeMarchandise" [(ngModel)]="annonce.typeDeMarchandise">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 mb-3" appearance="fill">
+              <mat-label>CapaciteDisponible :</mat-label>
+              <input type="text" matInput placeholder="capaciteDisponible" name="capaciteDisponible" [(ngModel)]="annonce.capaciteDisponible">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 mb-3" appearance="fill">
+              <mat-label>Date :</mat-label>
+              <input type="date" matInput placeholder="date" name="date" [(ngModel)]="annonce.date">
+            </mat-form-field>
+          </div>
+        </div>
+        <input class="mt-3 fw-bold btn mb-3 form-control-lg btn btn-primary" type="submit" value="Mofier Annonce">
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

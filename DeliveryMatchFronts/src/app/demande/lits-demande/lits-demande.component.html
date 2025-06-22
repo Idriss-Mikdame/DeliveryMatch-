@@ -1,0 +1,31 @@
+<div class="bg">
+  <div class="container ">
+    <div class="d-flex flex-wrap justify-content-center gap-5">
+      <div *ngFor="let ListDemande of DemmandeList">
+        <mat-card class="example-card shadow mb-5 mt-3" style="width: 300px;" appearance="outlined">
+          <mat-card-header>
+            <mat-card-title class="fw-bold text-primary">Demande Numéro {{ListDemande.id}}</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p><strong>Status</strong> : {{ListDemande.status}}</p>
+            <p><strong>DateDemande</strong> : {{ListDemande.dateDemande}}</p>
+            <p><strong>Dimension</strong> : {{ListDemande.dimension}}</p>
+            <p><strong>Poids</strong> : {{ListDemande.poids}}</p>
+            <p><strong>Type</strong> : {{ListDemande.type}}</p>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button mat-button color="warn" class="btn btn-danger">
+              <mat-icon (click)="SuuprimerAnnonce(ListDemande.id)">delete</mat-icon>
+            </button>
+
+            <button mat-button color="accent" class="btn btn-warning ms-3">
+              <mat-icon [routerLink]="['/index/udateDemande',ListDemande.id]">edit</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

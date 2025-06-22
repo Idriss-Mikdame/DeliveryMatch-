@@ -1,21 +1,33 @@
-<div class="row justify-content-center">
-  <div class="col-md-4 mb-3" *ngFor="let ListAnnonce of AnnonceLits">
-    <mat-card class="example-card" appearance="outlined">
-      <mat-card-header>
-        <mat-card-title>Annonce Numéro {{ListAnnonce.id}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p><strong>lieuDepart</strong> : {{ListAnnonce.lieuDepart}}</p>
-        <p><strong>etapes</strong> : {{ListAnnonce.etapes}}</p>
-        <p><strong>destination</strong> : {{ListAnnonce.destination}}</p>
-        <p><strong>dimensionMax</strong> : {{ListAnnonce.dimensionMax}}</p>
-        <p><strong>typeDeMarchandise</strong> : {{ListAnnonce.typeDeMarchandise}}</p>
-        <p><strong>capaciteDisponible</strong> : {{ListAnnonce.capaciteDisponible}}</p>
-        <p><strong>date</strong> : {{ListAnnonce.date | date:'yyyy-MM-dd'}}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button class="btn btn-success" mat-button>LIKE</button>
-      </mat-card-actions>
-    </mat-card>
+<div class="bg">
+  <div class="container ">
+    <div class="d-flex flex-wrap justify-content-center gap-5">
+      <div *ngFor="let ListAnnonce of AnnonceLits">
+        <mat-card class="example-card shadow mb-5 mt-3" style="width: 300px;" appearance="outlined">
+          <mat-card-header>
+            <mat-card-title class="fw-bold text-primary">Annonce Numéro {{ListAnnonce.id}}</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p><strong>LieuDepart</strong> : {{ListAnnonce.lieuDepart}}</p>
+            <p><strong>Etapes</strong> : {{ListAnnonce.etapes}}</p>
+            <p><strong>Destination</strong> : {{ListAnnonce.destination}}</p>
+            <p><strong>DimensionMax</strong> : {{ListAnnonce.dimensionMax}}</p>
+            <p><strong>TypeDeMarchandise</strong> : {{ListAnnonce.typeDeMarchandise}}</p>
+            <p><strong>CapaciteDisponible</strong> : {{ListAnnonce.capaciteDisponible}}</p>
+            <p><strong>Date</strong> : {{ListAnnonce.date | date:'yyyy-MM-dd'}}</p>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button mat-button color="warn" class="btn btn-danger">
+              <mat-icon (click)="SuuprimerAnnonce(ListAnnonce.id)">delete</mat-icon>
+            </button>
+
+            <button mat-button color="accent" class="btn btn-warning ms-3">
+              <mat-icon [routerLink]="['/index/udatAnnonce',ListAnnonce.id]">edit</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
   </div>
 </div>

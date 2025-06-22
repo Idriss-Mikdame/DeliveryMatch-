@@ -5,7 +5,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
-import {RegisterLoginService} from '../services/register-login.service';
+import {RegisterLoginService} from '../../services/register-login.service';
 import { Router } from '@angular/router';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {NgForOf} from '@angular/common';

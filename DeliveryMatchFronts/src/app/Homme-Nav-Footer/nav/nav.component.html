@@ -1,0 +1,49 @@
+<mat-toolbar style="background-color: paleturquoise" >
+  <button  mat-icon-button id="menuicons" class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span id="menuTitre" class="ms-5 " ><a mat-button class="top-menu-item" routerLink="/index/home">DelivryMatch</a></span>
+  <a mat-button class="top-menu-item" routerLink="/index/home">Home</a>
+  <a mat-button class="top-menu-item"   [matMenuTriggerFor]="importMenu">Annonce
+    <mat-icon iconPositionEndn>arrow_drop_down</mat-icon></a>
+  <mat-menu #importMenu="matMenu">
+    <button mat-menu-item routerLink="/index/addAnnonce" *ngIf="roles.includes('CONDUCTEUR')">Ajoute</button>
+    <button mat-menu-item routerLink="/index/listAnnonce">Afficher</button>
+  </mat-menu>
+  <a mat-button class="top-menu-item"  [matMenuTriggerFor]="importMenuDemande">Demmande
+    <mat-icon iconPositionEndn>arrow_drop_down</mat-icon></a>
+  <mat-menu #importMenuDemande="matMenu">
+    <button mat-menu-item routerLink="/index/addDemande" *ngIf="roles.includes('EXPEDITEUR')">Ajoute</button>
+    <button mat-menu-item routerLink="/index/listDemande">Afficher</button>
+  </mat-menu>
+  <span class="spacer"></span>
+  <span *ngIf="roles">{{roles.includes('EXPEDITEUR')}}</span>
+  <a mat-button class="top-menu-item" (click)="logout()">Logout</a>
+
+</mat-toolbar>
+      <router-outlet></router-outlet>
+<app-footer></app-footer>
+
+<!--<mat-sidenav-container >-->
+<!--  <mat-sidenav #sidenav  [fixedInViewport]="true" [fixedTopGap]="60" class="side"  opened>-->
+<!--   <div class="side-nav-item">-->
+<!--     <div>-->
+<!--       <a (click)="sidenav.close()" mat-button class="side-menu-item" routerLink="/index/home">Home</a>-->
+<!--     </div>-->
+<!--     <div><a (click)="sidenav.close()" mat-button class="side-menu-item"  routerLink="/index/listAnnonce">Annonce</a></div>-->
+
+<!--     <div><a (click)="sidenav.close()" mat-button class="side-menu-item" routerLink="">Demmande</a></div>-->
+<!--     <div><a (click)="sidenav.close()" mat-button class="side-menu-item" routerLink="">Logout</a></div>-->
+<!--   </div>-->
+<!--  </mat-sidenav>-->
+<!--  <mat-sidenav-content>-->
+<!--    <div class="main-content">-->
+<!--      <router-outlet></router-outlet>-->
+<!--    </div>-->
+
+<!--  </mat-sidenav-content>-->
+<!--</mat-sidenav-container>-->
+
+
+
